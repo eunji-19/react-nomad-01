@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 interface ContainerProps {
@@ -21,21 +21,14 @@ interface CircleProps {
 }
 
 function Circle({ bgColor, borderColor, text = "default" }: CircleProps) {
+  const [counter, setCounter] = useState<number>(0);
+
   return (
     <Container bgColor={bgColor} borderColor={borderColor ?? bgColor}>
-      {text}
+      {text} {counter}
+      <button onClick={() => setCounter((prev) => prev + 1)}>Increment</button>
     </Container>
   );
 }
 
 export default Circle;
-
-interface Player {
-  name: string;
-  age: number;
-}
-
-const sayHello = (playerObj: Player) =>
-  `Hello ${playerObj.name} you are ${playerObj.age} old`;
-
-sayHello({ name: "eunji", age: 20 });
