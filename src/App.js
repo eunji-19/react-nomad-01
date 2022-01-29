@@ -1,36 +1,88 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-const Father = styled.div`
+/**
+ * Animation
+ */
+const Wrapper = styled.div`
   display: flex;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+`;
+
+const rotationAnimation = keyframes`
+    0% {
+        transform: rotate(0deg);
+        border-radius: 0px;
+    }
+    50% {
+        border-radius: 100px;
+    }
+    100% {
+        transform: rotate(360deg);
+        border-radius: 0px;
+    }
 `;
 
 /**
- * as : styled.button -> styled.a
+ * Styled-Componets 안의 element 선택하는 방법 1
+ * <span></span>
  */
-const Btn = styled.button`
-  color: white;
-  background-color: tomato;
-  border: 0;
-  border-radius: 15px;
-`;
+// const Box = styled.div`
+//   height: 200px;
+//   width: 200px;
+//   background-color: tomato;
+//   animation: ${rotationAnimation} 1s linear infinite;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   span {
+//     font-size: 36px;
+//     &:hover {
+//       font-size: 50px;
+//     }
+//     &:active {
+//       opacity: 0;
+//     }
+//   }
+// `;
 
-const Input = styled.input.attrs({ required: true })`
+/**
+ * Styled-Componets 안의 element 선택하는 방법 2
+ * <Emoji as="p"></Emoji>
+ */
+const Emoji = styled.span`
+  font-size: 36px;
+`;
+const Box = styled.div`
+  height: 200px;
+  width: 200px;
   background-color: tomato;
+  animation: ${rotationAnimation} 1s linear infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  ${Emoji} {
+    &:hover {
+      font-size: 100px;
+    }
+    &:active {
+      opacity: 0;
+    }
+  }
 `;
 
 const App = () => {
   return (
-    <Father as="header">
-      <Input />
-      <Input />
-      <Input />
-      <Input />
-      {/* <Btn>Login</Btn>
-      <Btn as="a" href="/">
-        Login
-      </Btn> */}
-    </Father>
+    <Wrapper>
+      <Box>
+        {/* <span>😍</span> */}
+        <Emoji>😍</Emoji>
+      </Box>
+      <Emoji>💪</Emoji>
+    </Wrapper>
   );
 };
 
